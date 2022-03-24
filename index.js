@@ -16,6 +16,8 @@ console.log('Conectado.. server socker ok..cliente conectado');
 
 cliente.on('disconect',()=>{console.log('desconectado')});
 
+cliente.emit('estado',{'estado':'ok','nombre':'pancho'});
+
 }); 
 
 

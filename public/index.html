@@ -20,7 +20,10 @@ socket.on('connect',function(){
 socket.on('desconnect',function(){
     console.log('Desconectado');
 });
-
+socket.on('estado',function(data){
+    console.log('estado',data.estado);
+    console.log('nombre',data.nombre);
+});
 </script>
 
     <h1>Node Server</h1>
