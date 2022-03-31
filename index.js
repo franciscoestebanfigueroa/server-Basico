@@ -5,9 +5,12 @@ const dotenv = require('dotenv').config();
 const {dbConectar} =require('./database/config').dbConectar();
 
 
-
 const publicPath=path.resolve(__dirname,'public');
 app.use(express.static(publicPath));
+
+//para body json
+app.use(express.json());
+//rutas
 app.use('/api/login',require('./router/auth'));
 
 const server=require('http').createServer(app);
