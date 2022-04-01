@@ -12,6 +12,10 @@ const  router=Router();
 router.post('/new',[
     check('nombre','falta el nombre').not().isEmpty(),
     controlUser,
+    check('password','falta el contraseña').not().isEmpty(),
+    controlUser,
+    check('email','falta correo').isEmail(),
+    controlUser
 ]
 ,crearUsuario);
 
