@@ -1,6 +1,7 @@
 
 const { validationResult } = require("express-validator");
 
+
 const controlUser=(req,res,next)=>{
 
 
