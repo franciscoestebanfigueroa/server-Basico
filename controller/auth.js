@@ -1,6 +1,7 @@
 const { response } = require("express");
 const Usuario = require("../model/model-usuario");
 const bcryp=require('bcryptjs');
+const { creartoken } = require("../jwt/jwt");
 
 const crearUsuario = async(req, res = response) => {
 
@@ -23,14 +24,17 @@ try {
     const salt=bcryp.genSaltSync();
     usuario.password=bcryp.hashSync(password,salt); 
 
+        
     await usuario.save();
-
+     
+    const token =await creartoken(usuario._id);//puede ser uid
 
     res.json({
 
         ok: true,
         mge: 'Usuario creado',
-        dataBody:usuario
+        usuario,
+        token
 
 
     });
