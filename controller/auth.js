@@ -46,8 +46,92 @@ try {
 
 
 
-   
 
 
 };
-module.exports = { crearUsuario }
+const login = async(req,res=response)=>{
+
+//const usuario=new Usuario(req.body);    
+const { email,password} = req.body;
+
+    try {
+       
+       const usuariodb = await Usuario.findOne({email});
+        if(!usuariodb){
+           return  res.status(404).json({
+                ok:true,
+                mge:'mail  no encontrado'
+        
+            });    
+        
+        }
+
+        const checkPass= bcryp.compareSync(password,usuariodb.password);
+        if(!checkPass){
+
+            return res.status(500).json({
+                ok:false,
+                mge:'pass '
+            });
+        }
+
+                //generar jwt
+
+               const newToken = await creartoken(usuariodb._id);
+
+
+
+
+    
+        res.json({
+            ok:true,
+            mge:'login',
+            usuariodb,
+            newToken
+    
+        });
+    
+    
+    } catch (error) {
+        
+        res.status(400).json({
+            ok:false,
+            mge:'error login cath'
+    
+        });
+    }
+
+
+};
+const reNewJWT=async(req,res=response)=>{
+
+//const tokenOld= req.
+
+try {
+    
+    const user =await Usuario.findById(req.uid);
+
+res.json({
+    nombre:user.nombre,
+    id:req.uid,
+    ok:true,
+    mge:'renew Token'
+});
+
+
+} catch (error) {
+    
+res.status(404).json({
+    ok:false,
+    mge:'error hable administrador'
+});
+
+}
+
+};
+
+    
+
+
+
+module.exports = { crearUsuario ,login,reNewJWT}

@@ -4,20 +4,31 @@ const { response } = require('express');
 const express = require('express');
 const {Router}=require('express');
 const { check } = require('express-validator');
-const { crearUsuario } = require('../controller/auth');
-const { controlUser } = require('../middleware/control-usuarios');
+const { crearUsuario,login,reNewJWT } = require('../controller/auth');
+const { controlUserMw } = require('../middleware/control-usuarios');
+const {validarJWT} = require('../middleware/validarJWT');
 const  router=Router();
 //const router = require('express').Router();
 
 router.post('/new',[
     check('nombre','falta el nombre').not().isEmpty(),
-    controlUser,
+    controlUserMw,
     check('password','falta el contraseña').not().isEmpty(),
-    controlUser,
+    controlUserMw,
     check('email','falta correo').isEmail(),
-    controlUser
+    controlUserMw
 ]
 ,crearUsuario);
 
+
+router.post('/',[
+    check('password','falta el contraseña').not().isEmpty(),
+    controlUserMw,
+    check('email','falta correo').isEmail(),
+    controlUserMw
+
+],login);
+
+router.get('/renew', [validarJWT],reNewJWT);
 
 module.exports=router;

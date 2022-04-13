@@ -2,7 +2,7 @@
 const { validationResult } = require("express-validator");
 
 
-const controlUser=(req,res,next)=>{
+const controlUserMw=(req,res,next)=>{
 
 
     const errors=validationResult(req);
@@ -20,5 +20,5 @@ next();
 
 }
 module.exports={
-    controlUser
+    controlUserMw
 }
