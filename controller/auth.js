@@ -108,11 +108,12 @@ const reNewJWT=async(req,res=response)=>{
 //const tokenOld= req.
 
 try {
-    
     const user =await Usuario.findById(req.uid);
+    const tokenNew= await creartoken(req.uid);
 
 res.json({
-    nombre:user.nombre,
+    tokenNew,
+    nombre:user,
     id:req.uid,
     ok:true,
     mge:'renew Token'
