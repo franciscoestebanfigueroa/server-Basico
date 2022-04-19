@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 
 
 const controlUserMw=(req,res,next)=>{
-
+ console.log(req.body);
 
     const errors=validationResult(req);
 

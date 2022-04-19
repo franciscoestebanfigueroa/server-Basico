@@ -22,9 +22,9 @@ router.post('/new',[
 
 
 router.post('/',[
-    check('password','falta el contraseña').not().isEmpty(),
-    controlUserMw,
     check('email','falta correo').isEmail(),
+    controlUserMw,
+    check('password','falta la contraseña').not().isEmpty(),
     controlUserMw
 
 ],login);

@@ -86,7 +86,7 @@ const { email,password} = req.body;
         res.json({
             ok:true,
             mge:'login',
-            usuariodb,
+            usuario:usuariodb,
             newToken
     
         });
@@ -110,6 +110,7 @@ const reNewJWT=async(req,res=response)=>{
 try {
     const user =await Usuario.findById(req.uid);
     const tokenNew= await creartoken(req.uid);
+   
 
 res.json({
     tokenNew,
@@ -124,7 +125,7 @@ res.json({
     
 res.status(404).json({
     ok:false,
-    mge:'error hable administrador'
+    mge:'error comuniquese administrador'
 });
 
 }

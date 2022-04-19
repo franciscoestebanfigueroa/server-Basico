@@ -26,7 +26,7 @@ email:{
 });
 
 UsuarioSchema.method('toJSON',function(){
-  const {__v,_id,online,password,...data }=this.toObject();
+  const {__v,_id,password,...data }=this.toObject();
   data.uid=_id;
   return data;
 
