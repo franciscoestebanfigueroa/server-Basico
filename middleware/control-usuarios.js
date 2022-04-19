@@ -11,7 +11,9 @@ if(!errors.isEmpty()){
     return res.status(400).json({
 
         ok:false,
-        mge:errors.mapped()
+       // msg:errors.mapped(),
+        msg:errors['errors'][0]['msg']
+        
 
     });
 

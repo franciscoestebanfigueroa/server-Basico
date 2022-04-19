@@ -16,7 +16,7 @@ try {
     if(emailExistente){
         return res.status(400).json({
             ok:false,
-            mge:'correo exixtente '
+            msg:'correo existente '
         }); 
     } 
 
@@ -32,7 +32,7 @@ try {
     res.json({
 
         ok: true,
-        mge: 'Usuario creado',
+        msg: 'Usuario creado',
         usuario,
         newToken:token
 
