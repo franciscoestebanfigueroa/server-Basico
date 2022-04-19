@@ -34,7 +34,7 @@ try {
         ok: true,
         mge: 'Usuario creado',
         usuario,
-        token
+        newToken:token
 
 
     });
