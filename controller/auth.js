@@ -85,7 +85,7 @@ const { email,password} = req.body;
     
         res.json({
             ok:true,
-            mge:'login',
+            msg:'login',
             usuario:usuariodb,
             newToken
     
@@ -113,11 +113,11 @@ try {
    
 
 res.json({
-    tokenNew,
-    nombre:user,
+    newToken:tokenNew,
+    usuario:user,
     id:req.uid,
     ok:true,
-    mge:'renew Token'
+    msg:'renew Token'
 });
 
 
