@@ -19,6 +19,7 @@ const io=require('socket.io')(server);
 
 io.on('connection',cliente=>{
 
+    console.log(cliente.handshake.headers);
 console.log('Conectado.. server socker ok..cliente conectado');
 
 cliente.on('disconect',()=>{console.log('desconectado')});
