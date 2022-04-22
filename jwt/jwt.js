@@ -27,6 +27,15 @@ const creartoken=(uid)=>{
 
 }
 
+ const auth_conexion=(token='')=>{
+
+    
+    
+    //const {uid} = jwt.verify(token,process.env.JWTKEY); 
+
+
+ }
+
 
 
 module.exports={creartoken};
