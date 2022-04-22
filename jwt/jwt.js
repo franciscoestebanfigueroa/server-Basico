@@ -26,19 +26,27 @@ const creartoken=(uid)=>{
     });
 
 }
+const  checkin=(token='')=>{
 
- const auth_conexion=(token='')=>{
+    try {
 
-    
-    
-    //const {uid} = jwt.verify(token,process.env.JWTKEY); 
+        const {uid} = jwt.verify(token,process.env.JWTKEY); 
+        console.log('bienvenido ',uid);
+        
+        return [true,uid];
+        
+    } catch (error) {
+        console.log( 'erorrrr',error);
+        return [false,null];
+        
+        
+    }
 
 
- }
+}
 
 
-
-module.exports={creartoken};
+module.exports={creartoken,checkin};
 
 
 

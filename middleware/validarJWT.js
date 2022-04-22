@@ -38,4 +38,7 @@ next();
 
 };
 
+
+
+
 module.exports={validarJWT};
