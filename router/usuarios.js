@@ -24,7 +24,7 @@ const  routerUsuarios=Router();
 //
 
 
-routerUsuarios.get('/listado', [],controllerListUser);
-routerUsuarios.get('/estado', [],controllerEstadoUser);
+//routerUsuarios.get('/listado', [],controllerListUser);
+
 
 module.exports=routerUsuarios;

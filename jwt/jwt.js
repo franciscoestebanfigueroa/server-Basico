@@ -31,9 +31,9 @@ const  checkin=(token='')=>{
     try {
 
         const {uid} = jwt.verify(token,process.env.JWTKEY); 
-        console.log('bienvenido ',uid);
+       // console.log('bienvenido ',uid);
         
-        return [true,uid];
+        return [true,uid];//vamos a dejar asi, para recordar que podemos regresar [ a,b]
         
     } catch (error) {
         console.log( 'erorrrr',error);
