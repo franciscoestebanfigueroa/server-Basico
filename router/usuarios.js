@@ -24,7 +24,9 @@ const  routerUsuarios=Router();
 //
 
 
-//routerUsuarios.get('/listado', [],controllerListUser);
+routerUsuarios.get('/listado', 
+//validarJWT,
+controllerListUser);
 
 
 module.exports=routerUsuarios;

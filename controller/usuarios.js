@@ -31,12 +31,14 @@ const  controllerEstadoUserOn = async(uid='')=>{
 
 
 
-const controllerListUser =(req,res=response,token='')=>{
- 
+const controllerListUser =async(req,res=response)=>{
+ const list=await Usuario.find();
     
 res.json({
+
     'ok':true,
-    'msg':'estado del usuario'
+    'msg':'estado del usuario',
+    'usuarios':list
 });
 
 }
