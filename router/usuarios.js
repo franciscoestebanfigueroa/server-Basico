@@ -25,7 +25,7 @@ const  routerUsuarios=Router();
 
 
 routerUsuarios.get('/listado', 
-//validarJWT,
+validarJWT,
 controllerListUser);
 
 
