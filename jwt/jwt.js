@@ -12,7 +12,7 @@ const creartoken=(uid)=>{
         jwt.sign(payload,process.env.JWTKEY,{expiresIn:'24h'},
         (err,token)=>{
             if(err){
-                rejects('no se pudo crear Token') //es como si disparara el cath
+                rejects('no se pudo crear Token'); //es como si disparara el cath
                 console.log('error creacion Token');
             }
             else{
@@ -30,8 +30,8 @@ const  checkin=(token='')=>{
 
     try {
 
-        const {uid} = jwt.verify(token,process.env.JWTKEY); 
-       // console.log('bienvenido ',uid);
+        var {uid} = jwt.verify(token,process.env.JWTKEY); 
+        console.log('bienvenido ',uid);
         
         return [true,uid];//vamos a dejar asi, para recordar que podemos regresar [ a,b]
         
