@@ -19,7 +19,7 @@ return res.status(401).json({
 try {
 
     const {uid} = jwt.verify(token,process.env.JWTKEY); 
-    req.uid=uid; 
+    req.uid=uid; //creamos req.uid para usarlo despues en filtro 
    
  
 

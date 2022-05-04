@@ -48,12 +48,23 @@ io.on ('connection',cliente=>{
             if(data==false){
                 console.log('por favor desconectar' ,data);
                 controllerEstadoUserOff(uid);
+                io.emit('actualizar','actualizar');
                 cliente.disconnect();
                 return;
                     
             }
             else{
+                io.emit('actualizar','actualizar');
                 controllerEstadoUserOn(uid);
+                cliente.join(uid) ;
+                cliente.on('sala',(payload)=>{
+                    console.log('sala-->',payload);
+                    io.to(payload.para).emit('sala',payload);
+                    io.to(payload.de).emit('sala',payload);
+                });
+
+
+
             }
         });
      }   
