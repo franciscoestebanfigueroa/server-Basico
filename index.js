@@ -6,6 +6,8 @@ const { checkin } = require('./jwt/jwt');
 const dotenv = require('dotenv').config();
 const {dbConectar} =require('./database/config').dbConectar();
 const { controllerEstadoUserOff,controllerEstadoUserOn}=require('./controller/usuarios');
+const { grabarMensajes } = require('./controller/auth');
+
 
 const publicPath=path.resolve(__dirname,'public');
 app.use(express.static(publicPath));
@@ -15,6 +17,7 @@ app.use(express.json());
 //rutas
 app.use('/api/login',require('./router/auth'));
 app.use('/api/usuarios',require('./router/usuarios'));
+app.use('/api/mensajes',require('./router/mensajes'));
 
 const server=require('http').createServer(app);
 const io=require('socket.io')(server);
@@ -56,9 +59,11 @@ io.on ('connection',cliente=>{
             else{
                 io.emit('actualizar','actualizar');
                 controllerEstadoUserOn(uid);
-                cliente.join(uid) ;
-                cliente.on('sala',(payload)=>{
+                cliente.join(uid) ;//crea una sala con nombre o id de uid
+                cliente.on('sala',async(payload)=>{
                     console.log('sala-->',payload);
+                    await grabarMensajes(payload);
+
                     io.to(payload.para).emit('sala',payload);
                     io.to(payload.de).emit('sala',payload);
                 });

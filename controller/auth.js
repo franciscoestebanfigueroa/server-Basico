@@ -1,5 +1,6 @@
 const { response } = require("express");
 const Usuario = require("../model/model-usuario");
+const Mensaje=require("../model/model_chat");
 const bcryp=require('bcryptjs');
 const { creartoken } = require("../jwt/jwt");
 
@@ -133,7 +134,20 @@ res.status(404).json({
 };
 
     
+const grabarMensajes=async(payload)=>{
+
+    try {
+        const mensaje=new Mensaje(payload);
+        await mensaje.save();
+console.log('grabando mensaje en base datos');
+        return true;
+
+    } catch (error) {
+        console.log('error grabando mensaje en base datos',error);
+        return false;
+    }
+}
 
 
 
-module.exports = { crearUsuario ,login,reNewJWT}
+module.exports = { crearUsuario ,login,reNewJWT,grabarMensajes}
